@@ -19,6 +19,11 @@ class ProductAdapter(var context: Context,
         var productPrice: TextView = view.findViewById(R.id.lblPrice)
         var productDirection: TextView = view.findViewById(R.id.lblDescription)
         var  btnedit : TextView = view.findViewById(R.id.btnedit)
+        var  imageview : TextView = view.findViewById(R.id.imageView)
+        var  progressbar : TextView = view.findViewById(R.id.progressBar)
+
+
+
 
     }
 
