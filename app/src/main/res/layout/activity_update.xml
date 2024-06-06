@@ -8,6 +8,13 @@
     android:layout_height="match_parent"
     tools:context=".AddProductActivity">
 
+    <ImageView
+        android:layout_width="150dp"
+        android:id="@+id/imageUpdate"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/baseline_add_a_photo_24"/>
+
     <EditText
         android:id="@+id/updatename"
         android:layout_width="match_parent"

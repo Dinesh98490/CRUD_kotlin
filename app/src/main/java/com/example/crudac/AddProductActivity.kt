@@ -113,7 +113,7 @@ class AddProductActivity : AppCompatActivity() {
             imageReference.putFile(url).addOnSuccessListener {
                  imageReference.downloadUrl.addOnSuccessListener { url->
                      var imageUrl = url.toString()
-                     AddProduct(imageUrl)
+                     AddProduct(imageUrl,imageName)
                  }
             }.addOnFailureListener{
                 Toast.makeText(applicationContext,
@@ -123,14 +123,15 @@ class AddProductActivity : AppCompatActivity() {
 
         }
     }
-    fun AddProduct(url: String){
+    fun AddProduct(url: String, imageName: String){
         var name: String = addProductBinding.idname.text.toString()
         var desc: String = addProductBinding.iddescription.text.toString()
         var price: Int = addProductBinding.idprice.text.toString().toInt()
 
+
         var id = ref.push().key.toString()
 
-        var data = ProductModel(id, name, price, desc,url)
+        var data = ProductModel(id, name, price, desc,url, imageName)
 
         ref.child(id).setValue(data).addOnCompleteListener {
             if (it.isSuccessful) {

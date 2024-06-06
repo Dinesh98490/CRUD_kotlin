@@ -1,8 +1,14 @@
 package com.example.crudac.model
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -10,12 +16,39 @@ import com.example.crudac.R
 import com.example.crudac.databinding.ActivityUpdateBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
+import java.util.UUID
 
 class UpdateActivity : AppCompatActivity() {
     lateinit var  updateBinding: ActivityUpdateBinding
     var id = ""
+    var imageName=""
     var firebaseDatabase:FirebaseDatabase = FirebaseDatabase.getInstance()
     var ref: DatabaseReference = firebaseDatabase.reference.child("product")
+    lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    var imageUri: Uri? = null
+
+
+
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 1 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            activityResultLauncher.launch(intent)
+        }
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,15 +58,20 @@ class UpdateActivity : AppCompatActivity() {
         updateBinding.updatename.setText(product?.productName)
         updateBinding.updateprice.setText(product?.productPrice.toString())
         updateBinding.updatedesc.setText(product?.productDesc)
+        Picasso.get().load(product?.url).into(updateBinding.imageUpdate)
+
 
 
 
         id =product?.id.toString()
+        imageName=product?.id.toString()
 
         updateBinding.updatebutton.setOnClickListener {
             var updateName : String = updateBinding.updatename.text.toString()
             var updatePrice : Int = updateBinding.updateprice.text.toString().toInt()
             var updateDisc : String = updateBinding.updatedesc.text.toString()
+
+
 
             var updateMap = mutableMapOf<String, Any>()
             updateMap["productName"] = updateName
@@ -65,4 +103,5 @@ class UpdateActivity : AppCompatActivity() {
             insets
         }
     }
+
 }
