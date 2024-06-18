@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 
-    class Imageutils(private val activity: AppCompatActivity) {
+class Imageutils(private val activity: AppCompatActivity) {
 
         private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
@@ -31,7 +31,7 @@ import androidx.core.content.ContextCompat
             )
         }
 
-        fun launchGallery(context: Context) {
+     fun launchGallery(context: Context) {
             val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 android.Manifest.permission.READ_MEDIA_IMAGES
             } else {

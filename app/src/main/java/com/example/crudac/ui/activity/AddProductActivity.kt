@@ -124,6 +124,8 @@ class AddProductActivity : AppCompatActivity() {
 
         }
     }
+
+    // this is used to add product
     fun AddProduct(url: String, imageName: String){
         var name: String = addProductBinding.idname.text.toString()
         var desc: String = addProductBinding.iddescription.text.toString()
