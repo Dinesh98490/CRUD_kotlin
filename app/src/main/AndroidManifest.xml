@@ -32,10 +32,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddProductActivity"
+            android:name=".ui.activity.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

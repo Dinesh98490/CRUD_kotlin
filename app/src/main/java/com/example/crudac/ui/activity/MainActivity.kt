@@ -1,4 +1,4 @@
-package com.example.crudac
+package com.example.crudac.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.crudac.R
 import com.example.crudac.adapter.ProductAdapter
 import com.example.crudac.databinding.ActivityMainBinding
 import com.example.crudac.model.ProductModel
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var mainBinding: ActivityMainBinding
     var firebaseDatabase:FirebaseDatabase = FirebaseDatabase.getInstance()
     var ref: DatabaseReference = firebaseDatabase.reference.child("product")
@@ -101,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
         }).attachToRecyclerView(mainBinding.recylerview)
 
-
+        //this button helps to add the products
         mainBinding.floatingActionButton.setOnClickListener{
             var intent = Intent(this@MainActivity, AddProductActivity::class.java)
             startActivity(intent)

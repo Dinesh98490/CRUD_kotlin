@@ -1,4 +1,4 @@
-package com.example.crudac
+package com.example.crudac.ui.activity
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.crudac.R
 import com.example.crudac.databinding.ActivityAddProductBinding
 import com.example.crudac.model.ProductModel
 import com.google.firebase.database.DatabaseReference
